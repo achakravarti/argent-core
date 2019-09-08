@@ -154,12 +154,6 @@ typedef int arc_erno;
 #define ARC_ERNO_STRING ((arc_erno) 0x4)
 
 
-#define ARC_ERNO_MEMORY ((arc_erno) 0x5)
-
-
-#define ARC_ERNO_FILE ((arc_erno) 0x6)
-
-
 #define arc_erno_get() \
         ((const arc_erno) arc__erno__)
 
@@ -180,6 +174,38 @@ typedef int arc_erno;
 
 
 #define ARC_FINALLY ARC__FINALLY__
+
+
+#define arc_assert(p, e)       \
+do {                           \
+    if (arc_unlikely (!(p))) { \
+        arc__erno__ = (e);     \
+        goto ARC__CATCH__;     \
+    }                          \
+} while (0)
+
+
+#define arc_assert_handle(p) \
+        arc_assert((p), ARC_ERNO_HANDLE)
+
+
+#define arc_assert_state(p) \
+        arc_assert((p), ARC_ERNO_STATE)
+
+
+#define arc_assert_range(p) \
+        arc_assert((p), ARC_ERNO_RANGE)
+
+
+#define arc_assert_string(s) \
+        arc_assert((s) && *(s), ARC_ERNO_STRING)
+
+
+#define arc_try(p)                         \
+do {                                       \
+    if (arc_unlikely (rush__erno__ = (p))) \
+        goto ARC__CATCH__;                 \
+} while (0)
 
 
 #endif /* !defined ARGENT_CORE */
