@@ -139,7 +139,7 @@
 typedef int arc_erno;
 
 
-#define ARC_ERNO_NULL ((arc_erno) 0x0)
+#define ARC_ERNO_NULL ((ARC_ERNO) 0x0)
 
 
 #define ARC_ERNO_HANDLE ((arc_erno) 0x1)
@@ -166,6 +166,20 @@ typedef int arc_erno;
 
 #define arc_erno_set(e) \
         (arc__erno__ = (e))
+
+
+#define ARC_TRY                                        \
+        register arc_erno arc__erno__ = ARC_ERNO_NULL; \
+        goto ARC__TRY__;                               \
+        ARC__TRY__
+
+
+#define ARC_CATCH            \
+        goto ARC__FINALLY__; \
+        ARC__CATCH__
+
+
+#define ARC_FINALLY ARC__FINALLY__
 
 
 #endif /* !defined ARGENT_CORE */
