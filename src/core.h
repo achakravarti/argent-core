@@ -128,5 +128,16 @@
 #endif
 
 
+/**
+ * @example hint.h
+ * This is an example showing how to code against the Argent Core Hint Module
+ * interface.
+ * @}
+ */
+
+
+typedef int arc_erno;
+
+
 #endif /* !defined ARGENT_CORE */
 
