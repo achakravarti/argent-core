@@ -139,11 +139,13 @@
 typedef int arc_erno;
 
 
-#define ARC_ERNO_NULL ((rush_erno) 0x0)
-#define ARC_ERNO_HANDLE ((rush_erno) 0x1)
-#define ARC_ERNO_STATE ((rush_erno) 0x2)
-#define ARC_ERNO_RANGE ((rush_erno) 0x3)
-#define ARC_ERNO_STRING ((rush_erno) 0x4)
+#define ARC_ERNO_NULL ((arc_erno) 0x0)
+#define ARC_ERNO_HANDLE ((arc_erno) 0x1)
+#define ARC_ERNO_STATE ((arc_erno) 0x2)
+#define ARC_ERNO_RANGE ((arc_erno) 0x3)
+#define ARC_ERNO_STRING ((arc_erno) 0x4)
+#define ARC_ERNO_MEMORY ((arc_erno) 0x5)
+#define ARC_ERNO_FILE ((arc_erno) 0x6)
 
 
 #endif /* !defined ARGENT_CORE */
