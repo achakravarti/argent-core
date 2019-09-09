@@ -128,5 +128,382 @@
 #endif
 
 
+/**
+ * @example hint.h
+ * This is an example showing how to code against the Argent Core Hint Module
+ * interface.
+ * @}
+ */
+
+
+/**************************************************************************//**
+ * @defgroup error Argent Core Error Handling Module
+ * Simplified error handling mechanism.
+ *
+ * Error handling is an essential part of any reliable code. The traditional
+ * approach to handling exceptions in C is either through the use of error codes
+ * or through the @c setjmp()/longjmp() pair of functions. The former mechanism
+ * is simpler to implement, and is the choice of the Argent Core Library.
+ *
+ * This module implements a very simple error handling mechansim in functions
+ * through a combination of integer error codes and labels that mimic the
+ * traditional try-catch-finally flow.
+ * @{
+ */
+
+
+/**
+ * Generic error code.
+ *
+ * The @c arc_erno type is used to hold error codes. Error codes may be defined
+ * by client code as unsigned integers, with the exception of the error codes
+ * defined below. This type aligns itself to the native word size of the host
+ * environment. Any function returning this type can take advantage of the error
+ * handling features provided by this module.
+ */
+typedef int arc_erno;
+
+
+/**
+ * No error.
+ *
+ * The @c ARC_ERNO_NULL symbolic constant indicates that no error has occurred.
+ * This error code is reserved by the Argent Core Library, and should @b not be
+ * redefined by client code. Functions that take advantage of the error handling
+ * mechanism implemented by this module return this symbolic constant (through
+ * @c arc_erno_get()) by default if they don't encounter any errors during
+ * execution.
+ *
+ * @see ARC_TRY
+ * @see arc_assert()
+ * @see arc_try()
+ */
+#define ARC_ERNO_NULL ((ARC_ERNO) 0x0)
+
+
+/**
+ * Invalid pointer error.
+ *
+ * The @c ARC_ERNO_HANDLE symbolic constant indicates that an invalid pointer
+ * has been passed to a function or macro. This error code is reserved by the
+ * Argent Core Library, and should @b not be redefined by client code.
+ *
+ * @see ARC_TRY
+ * @see arc_assert_handle()
+ */
+#define ARC_ERNO_HANDLE ((arc_erno) 0x1)
+
+
+/**
+ * Invalid state error.
+ *
+ * The @c ARC_ERNO_STATE symbolic constant indicates that an operation has taken
+ * place that has resulted in an invalid state of an entity. This error code is
+ * reserved by the Argent Core Library, and should @b not be redefined by client
+ * code.
+ *
+ * @see ARC_TRY
+ * @see arc_assert_state()
+ */
+#define ARC_ERNO_STATE ((arc_erno) 0x2)
+
+
+/**
+ * Out of bounds error.
+ *
+ * The @c ARC_ERNO_RANGE symbolic constant indicates that a value that is
+ * outside its acceptable range has been passed to a function or macro. This
+ * error code is reserved by the Argent Core Library, and should @b not be
+ * redefined by client code.
+ *
+ * @see ARC_TRY
+ * @see arc_assert_range()
+ */
+#define ARC_ERNO_RANGE ((arc_erno) 0x3)
+
+
+/**
+ * The @c ARC_ERNO_STRING symbolic constant indicates that an invalid string has
+ * been passed to a function or macro. An invalid string is considered to be one
+ * that is either a null pointer or an empty string. This error code is reserved
+ * by the Argent Core Library, and should @b not be redefined by client code.
+ *
+ * @see ARC_TRY
+ * @see arc_assert_string()
+ */
+#define ARC_ERNO_STRING ((arc_erno) 0x4)
+
+
+/**
+ * Get current error code.
+ *
+ * The @c arc_erno_get() macro returns the current error code within a function
+ * that makes use of the error handling mechanism defined by this module. The
+ * error code returned is an @c arc_erno value, either one of those defined by
+ * this module, or one defined by client code.
+ *
+ * @return The current error code.
+ *
+ * @see arc_erno_set()
+ * @see ARC_TRY
+ */
+#define arc_erno_get() \
+        ((const arc_erno) arc__erno__)
+
+
+/**
+ * Set current error code.
+ *
+ * The @c arc_erno_set() macro sets the current error code within a function
+ * that makes use of the error handling mechanism defined by this module. The
+ * current error code can be set to an @c arc_erno value, either one of those
+ * defined by this module, or one defined by client code.
+ *
+ * @param e The @c arc_erno error code to set.
+ *
+ * @see arc_erno_get()
+ * @see ARC_TRY
+ */
+#define arc_erno_set(e) \
+        (arc__erno__ = (e))
+
+
+/**
+ * Start try block.
+ *
+ * The @c ARC_TRY label identifies the starting point of the try block within a
+ * function that returns an @c arc_erno value. The try block contains the normal
+ * flow of code that may encounter errors. It must be placed at the beginning of
+ * the function body and terminated by a @c ARC_TRY block.
+ *
+ * The code that may encounter errors within this block must be tested through
+ * the @c arc_try() and @c arc_assert() family of macros defined below. In case
+ * an error occurs, then control is passed to the adjancent @c ARC_CATCH block
+ * without executing the reamining code in the try block.
+ *
+ * If no error occurs, then control automatically moves to the @c ARC_FINALLY
+ * block placed after the @c ARC_CATCH block; this allows for the necessary
+ * cleanup code to be performed.
+ *
+ * @warning Be sure to include the @c ARC_CATCH and @c ARC_FINALLY blocks if
+ * using @c ARC_TRY.
+ *
+ * @see ARC_CATCH
+ * @see ARC_FINALLY
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define ARC_TRY                                        \
+        register arc_erno arc__erno__ = ARC_ERNO_NULL; \
+        goto ARC__TRY__;                               \
+        ARC__TRY__
+
+
+/**
+ * Start catch block.
+ *
+ * The @c ARC_CATCH label identifies the starting point of a catch block within
+ * a function that returns an @c arc_erno value. The catch block contains the
+ * error handling code, and must be placed immediately at the end of an @c
+ * ARC_TRY block.
+ *
+ * The @c ARC_CATCH block must be terminated by an adjacent ARC_FINALLY block.
+ * This allows all necessary cleanup code to be performed after the error
+ * handling code has been executed.
+ *
+ * @warning At no point should the @c arc_try() and @c arc_assert() family of
+ * macros be used in the @c ARC_CATCH block, as this would potentially lead to
+ * an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see ARC_FINALLY
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define ARC_CATCH            \
+        goto ARC__FINALLY__; \
+        ARC__CATCH__
+
+
+/**
+ * Start finally block.
+ *
+ * The @c ARC_FINALLY label identifies the starting point of a finally block
+ * within a function that returns an @c arc_erno value. The finally block
+ * contains the cleanup code that is common to both the @c ARC_TRY and @c
+ * ARC_CATCH blocks, and must be placed immediately at the end of an @c ARC_TRY
+ * block.
+ *
+ * The @c ARC_FINALLY block must be terminated by returning the current error
+ * code provided by the @c arc_erno_get() macro defined above.
+ *
+ * @warning At no point should the @c arc_try() and @c arc_assert() family of
+ * macros be used in the @c ARC_FINALLY block as this could potentially lead to
+ * an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see ARC_CATCH
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define ARC_FINALLY ARC__FINALLY__
+
+
+/**
+ * Verify generic precondition.
+ *
+ * The @c arc_assert() macro verifies whether a generic precondition, expressed
+ * as a predicate @p p, is true before any further processing takes place. If
+ * the assertion fails, then an @c arc_erno error code @p e is raised in the
+ * current context and control jumps to the adjacent @c ARC_CATCH block.
+ *
+ * @param p Precondition predicate being asserted.
+ * @param e Error code to be raised if assertion fails.
+ *
+ * @warning This macro can only be called within an @c ARC_TRY block; it should
+ * @b never be called within an @c ARC_CATCH or @c ARC_FINALLY block as it may
+ * lead to an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see arc_try()
+ * @see arc_assert_handle()
+ * @see arc_assert_state()
+ * @see arc_assert_range()
+ * @see arc_assert_string()
+ */
+#define arc_assert(p, e)       \
+do {                           \
+    if (arc_unlikely (!(p))) { \
+        arc__erno__ = (e);     \
+        goto ARC__CATCH__;     \
+    }                          \
+} while (0)
+
+
+/**
+ * Verify handle precondition.
+ *
+ * The @c arc_assert_handle() macro verifies whether a handle to an entity meets
+ * a specific precondition, expressed as a predicate @p p. If the assertion
+ * fails, then @c ARC_ERNO_HANDLE is raised in the current context and control
+ * jumps to the adjacent @c ARC_CATCH block.
+ *
+ * @param p Precondition predicate being asserted.
+ *
+ * @note This macro is a convenience wrapper around @c arc_assert().
+ *
+ * @warning This macro can only be called within an @c ARC_TRY block; it should
+ * @b never be called within an @c ARC_CATCH or @c ARC_FINALLY block as it may
+ * lead to an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see ARC_ERNO_HANDLE
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define arc_assert_handle(p) \
+    arc_assert((p), ARC_ERNO_HANDLE)
+
+
+/**
+ * Verify state precondition.
+ *
+ * The @c arc_assert_state() macro verifies whether the state of an entity meets
+ * a specific precondition, expressed as a predicate @p p. If the assertion
+ * fails, then @c ARC_ERNO_STATE is raised in the current context and control
+ * jumps to the adjacent @c ARC_CATCH block.
+ *
+ * @param p Precondition predicate being asserted.
+ *
+ * @note This macro is a convenience wrapper around @c arc_assert().
+ *
+ * @warning This macro can only be called within an @c ARC_TRY block; it should
+ * @b never be called within an @c ARC_CATCH or @c ARC_FINALLY block as it may
+ * lead to an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see ARC_ERNO_STATE
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define arc_assert_state(p) \
+    arc_assert((p), ARC_ERNO_STATE)
+
+
+/**
+ * Verify range precondition.
+ *
+ * The @c arc_assert_range() macro verifies whether an entity lies within a
+ * specific range, expressed as a predicate @p p. If the assertion fails, then
+ * @c ARC_ERNO_RANGE is raised in the current context and control jumps to the
+ * adjacent @c ARC_CATCH block.
+ *
+ * @param p Precondition predicate being asserted.
+ *
+ * @note This macro is a convenience wrapper around @c arc_assert().
+ *
+ * @warning This macro can only be called within an @c ARC_TRY block; it should
+ * @b never be called within an @c ARC_CATCH or @c ARC_FINALLY block as it may
+ * lead to an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see ARC_ERNO_RANGE
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define arc_assert_range(p) \
+    arc_assert((p), ARC_ERNO_RANGE)
+
+
+/**
+ * Verify string precondition.
+ *
+ * The @c arc_assert_string() macro verifies whether a string @p s is valid. A
+ * string is considered to be valid if it is not a null pointer and it is not
+ * empty. If the assertion fails, then @c ARC_ERNO_STRING is raised in the
+ * current context and control jumps to the adjacent @c ARC_CATCH block.
+ *
+ * @param p Precondition predicate being asserted.
+ *
+ * @note This macro is a convenience wrapper around @c arc_assert().
+ *
+ * @warning This macro can only be called within an @c ARC_TRY block; it should
+ * @b never be called within an @c ARC_CATCH or @c ARC_FINALLY block as it may
+ * lead to an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see ARC_ERNO_STRING
+ * @see arc_try()
+ * @see arc_assert()
+ */
+#define arc_assert_string(s) \
+    arc_assert((s) && *(s), ARC_ERNO_STRING)
+
+
+/**
+ * Validate postcondition.
+ *
+ * The @c arc_try() macro validates whether a postcondition @p, expressed as a
+ * function returning an @c arc_erno value, has not failed. The function is
+ * deemed to have run successfully if it has not raised any error as flagged by
+ * the returned error code. If the validation fails, then control will jump to
+ * the adjacent @c ARC_CATCH block.
+ *
+ * @param p Postcondition being evaluated.
+ *
+ * @warning This macro can only be called within an @c ARC_TRY block; it should
+ * @b never be called within an @c ARC_CATCH or @c ARC_FINALLY block as it may
+ * lead to an infinite loop.
+ *
+ * @see ARC_TRY
+ * @see arc_assert()
+ */
+#define arc_try(p)                         \
+do {                                       \
+    if (arc_unlikely (rush__erno__ = (p))) \
+        goto ARC__CATCH__;                 \
+} while (0)
+
+
 #endif /* !defined ARGENT_CORE */
 
