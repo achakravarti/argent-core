@@ -1,4 +1,10 @@
+DIR_INSTALL = /usr/local/include/argent
+
 install:
-	sudo mkdir -p /usr/local/include/argent
-	sudo cp src/core.h /usr/local/include/argent
+	sudo mkdir -p $(DIR_INSTALL)
+	sudo cp src/core.h $(DIR_INSTALL)
+
+
+uninstall:
+	sudo rm -rf $(DIR_INSTALL)
 
