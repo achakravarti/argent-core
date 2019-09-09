@@ -8,3 +8,12 @@ install:
 uninstall:
 	sudo rm -rf $(DIR_INSTALL)
 
+
+clean:
+	rm -rf doc
+
+
+doc:
+	mkdir -p doc;
+	doxygen Doxyfile
+
