@@ -136,6 +136,39 @@
  */
 
 
+#include <stdbool.h>
+#include <stdint.h>
+
+typedef bool arc_bool;
+#define ARC_BOOL_FALSE (false)
+#define ARC_BOOL_TRUE (true)
+
+typedef uint_fast64_t arc_word;
+typedef uint8_t arc_word_8;
+typedef uint16_t arc_word_16;
+typedef uint32_t arc_word_32;
+typedef uint64_t arc_word_64;
+
+typedef arc_word arc_size;
+typedef arc_word arc_index;
+
+typedef int_fast64_t arc_int;
+typedef int8_t arc_int_8;
+typedef int16_t arc_int_16;
+typedef int32_t arc_int_32;
+typedef int64_t arc_int_64;
+
+typedef uint_fast64_t arc_uint;
+typedef uint8_t arc_uint_8;
+typedef uint16_t arc_uint_16;
+typedef uint32_t arc_uint_32;
+typedef uint64_t arc_uint_64;
+
+typedef double arc_float;
+typedef float arc_float_32;
+typedef double arc_float_64;
+
+
 /**************************************************************************//**
  * @defgroup error Argent Core Error Handling Module
  * Simplified error handling mechanism.
@@ -178,7 +211,7 @@ typedef int arc_erno;
  * @see arc_assert()
  * @see arc_try()
  */
-#define ARC_ERNO_NULL ((ARC_ERNO) 0x0)
+#define ARC_ERNO_NULL ((arc_erno) 0x0)
 
 
 /**
