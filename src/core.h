@@ -421,7 +421,7 @@ typedef double arc_float_64;
  * environment. Any function returning this type can take advantage of the error
  * handling features provided by this module.
  */
-typedef int arc_erno;
+typedef arc_word arc_erno;
 
 
 /**
