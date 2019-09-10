@@ -508,7 +508,7 @@ typedef arc_word arc_erno;
  * @see ARC_TRY
  */
 #define arc_erno_get() \
-        ((const arc_erno) arc__erno__)
+    ((const arc_erno) arc__erno__)
 
 
 /**
@@ -525,7 +525,7 @@ typedef arc_word arc_erno;
  * @see ARC_TRY
  */
 #define arc_erno_set(e) \
-        (arc__erno__ = (e))
+    (arc__erno__ = (e))
 
 
 /**
@@ -553,10 +553,10 @@ typedef arc_word arc_erno;
  * @see arc_try()
  * @see arc_assert()
  */
-#define ARC_TRY                                        \
-        register arc_erno arc__erno__ = ARC_ERNO_NULL; \
-        goto ARC__TRY__;                               \
-        ARC__TRY__
+#define ARC_TRY                                    \
+    register arc_erno arc__erno__ = ARC_ERNO_NULL; \
+    goto ARC__TRY__;                               \
+    ARC__TRY__
 
 
 /**
@@ -580,9 +580,9 @@ typedef arc_word arc_erno;
  * @see arc_try()
  * @see arc_assert()
  */
-#define ARC_CATCH            \
-        goto ARC__FINALLY__; \
-        ARC__CATCH__
+#define ARC_CATCH        \
+    goto ARC__FINALLY__; \
+    ARC__CATCH__
 
 
 /**
