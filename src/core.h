@@ -187,6 +187,9 @@ typedef bool arc_bool;
  *
  * The @c ARC_BOOL_TRUE symbolic constant represents the Boolean value True, and
  * is one of the values that can be held by the @c arc_bool type.
+ *
+ * @see arc_bool
+ * @see ARC_BOOL_FALSE
  */
 #define ARC_BOOL_TRUE (true)
 
@@ -196,6 +199,11 @@ typedef bool arc_bool;
  *
  * The @c arc_word type represents an unsigned integer word native to the host
  * processor.
+ *
+ * @see arc_word_8
+ * @see arc_word_16
+ * @see arc_word_32
+ * @see arc_word_64
  */
 typedef uint_fast64_t arc_word;
 
@@ -206,6 +214,11 @@ typedef uint_fast64_t arc_word;
  * The @c arc_word_8 type represents an unsigned integer word that is guaranteed
  * to be at least 8 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_word
+ * @see arc_word_16
+ * @see arc_word_32
+ * @see arc_word_64
  */
 typedef uint8_t arc_word_8;
 
@@ -216,6 +229,11 @@ typedef uint8_t arc_word_8;
  * The @c arc_word_16 type represents an unsigned integer word that is
  * guaranteed to be at least 16 bits wide across all machine architectures
  * supported by the Argent Core Library.
+ *
+ * @see arc_word
+ * @see arc_word_8
+ * @see arc_word_32
+ * @see arc_word_64
  */
 typedef uint16_t arc_word_16;
 
@@ -226,6 +244,11 @@ typedef uint16_t arc_word_16;
  * The @c arc_word_32 type represents an unsigned integer word that is
  * guaranteed to be at least 32 bits wide across all machine architectures
  * supported by the Argent Core Library.
+ *
+ * @see arc_word
+ * @see arc_word_8
+ * @see arc_word_16
+ * @see arc_word_64
  */
 typedef uint32_t arc_word_32;
 
@@ -236,6 +259,11 @@ typedef uint32_t arc_word_32;
  * The @c arc_word_64 type represents an unsigned integer word that is
  * guaranteed to be at least 64 bits wide across all machine architectures
  * supported by the Argent Core Library.
+ *
+ * @see arc_word
+ * @see arc_word_8
+ * @see arc_word_16
+ * @see arc_word_32
  */
 typedef uint64_t arc_word_64;
 
@@ -245,6 +273,8 @@ typedef uint64_t arc_word_64;
  *
  * The @c arc_size type represents a native unsigned size value. This type
  * expands to either 32 or 64 bits depending on the machine architecture.
+ *
+ * @see arc_index
  */
 typedef size_t arc_size;
 
@@ -254,6 +284,8 @@ typedef size_t arc_size;
  *
  * The @c arc_index type represents a native unsigned index value. This type
  * expands to either 32 or 64 bits depending on the machine architecture.
+ *
+ * @see arc_size
  */
 typedef size_t arc_index;
 
@@ -264,6 +296,11 @@ typedef size_t arc_index;
  * The @c arc_int type represents a signed integer native to the host processor.
  * This type expands to a width of either 32 or 64 bits depending on the machine
  * architecture.
+ *
+ * @see arc_int_8
+ * @see arc_int_16
+ * @see arc_int_32
+ * @see arc_int_64
  */
 typedef int_fast64_t arc_int;
 
@@ -274,6 +311,11 @@ typedef int_fast64_t arc_int;
  * The @c arc_int_8 type represents a signed integer that is guaranteed to be at
  * least 8 bits wide across all machine architectures supported by the Argent
  * Core Library.
+ *
+ * @see arc_int
+ * @see arc_int_16
+ * @see arc_int_32
+ * @see arc_int_64
  */
 typedef int8_t arc_int_8;
 
@@ -284,6 +326,11 @@ typedef int8_t arc_int_8;
  * The @c arc_int_16 type represents a signed integer that is guaranteed to be
  * least 16 bits wide across all machine architectures supported by the Argent
  * Core Library.
+ *
+ * @see arc_int
+ * @see arc_int_8
+ * @see arc_int_32
+ * @see arc_int_64
  */
 typedef int16_t arc_int_16;
 
@@ -294,6 +341,11 @@ typedef int16_t arc_int_16;
  * The @c arc_int_32 type represents a signed integer that is guaranteed to be
  * least 32 bits wide across all machine architectures supported by the Argent
  * Core Library.
+ *
+ * @see arc_int
+ * @see arc_int_8
+ * @see arc_int_16
+ * @see arc_int_64
  */
 typedef int32_t arc_int_32;
 
@@ -304,6 +356,11 @@ typedef int32_t arc_int_32;
  * The @c arc_int_64 type represents a signed integer that is guaranteed to be
  * least 64 bits wide across all machine architectures supported by the Argent
  * Core Library.
+ *
+ * @see arc_int
+ * @see arc_int_8
+ * @see arc_int_16
+ * @see arc_int_32
  */
 typedef int64_t arc_int_64;
 
@@ -314,6 +371,11 @@ typedef int64_t arc_int_64;
  * The @c arc_uint type represents an unsigned integer native to the host
  * processor. This type expands to a width of either 32 or 64 bits depending on
  * the machine architecture.
+ *
+ * @see arc_uint_8
+ * @see arc_uint_16
+ * @see arc_uint_32
+ * @see arc_uint_64
  */
 typedef uint_fast64_t arc_uint;
 
@@ -324,6 +386,11 @@ typedef uint_fast64_t arc_uint;
  * The @c arc_uint_8 type represents an unsigned integer that is guaranteed to
  * be at least 8 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_uint
+ * @see arc_uint_16
+ * @see arc_uint_32
+ * @see arc_uint_64
  */
 typedef uint8_t arc_uint_8;
 
@@ -334,6 +401,11 @@ typedef uint8_t arc_uint_8;
  * The @c arc_uint_16 type represents an unsigned integer that is guaranteed to
  * be at least 16 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_uint
+ * @see arc_uint_8
+ * @see arc_uint_32
+ * @see arc_uint_64
  */
 typedef uint16_t arc_uint_16;
 
@@ -344,6 +416,11 @@ typedef uint16_t arc_uint_16;
  * The @c arc_uint_32 type represents an unsigned integer that is guaranteed to
  * be at least 32 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_uint
+ * @see arc_uint_8
+ * @see arc_uint_16
+ * @see arc_uint_64
  */
 typedef uint32_t arc_uint_32;
 
@@ -354,6 +431,11 @@ typedef uint32_t arc_uint_32;
  * The @c arc_uint_64 type represents an unsigned integer that is guaranteed to
  * be at least 64 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_uint
+ * @see arc_uint_8
+ * @see arc_uint_16
+ * @see arc_uint_32
  */
 typedef uint64_t arc_uint_64;
 
@@ -364,6 +446,9 @@ typedef uint64_t arc_uint_64;
  * The @c arc_float type represents a floating point value that is native to the
  * host processor. This type expands to either 32 or 64 bits depending on the
  * machine architecture.
+ *
+ * @see arc_float_32
+ * @see arc_float_64
  */
 typedef double arc_float;
 
@@ -374,6 +459,9 @@ typedef double arc_float;
  * The @c arc_float_32 type represents a floating point value that is guaranteed
  * to be at least 32 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_float
+ * @see arc_float_64
  */
 typedef float arc_float_32;
 
@@ -384,6 +472,9 @@ typedef float arc_float_32;
  * The @c arc_float_32 type represents a floating point value that is guaranteed
  * to be at least 64 bits wide across all machine architectures supported by the
  * Argent Core Library.
+ *
+ * @see arc_float
+ * @see arc_float_32
  */
 typedef double arc_float_64;
 
