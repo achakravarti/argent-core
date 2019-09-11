@@ -2,18 +2,18 @@
 
 
 /* This is how you would declare a hot function. */
-extern arc_hot void
+extern agc_hot void
 foo_hot(int x);
 
 
 /* This is how you would declare a cold function. */
-static arc_cold void
+static agc_cold void
 bar_cold(int y);
 
 
 /* This is how you would declare a pure function. Note that foo_hot() and
  * bar_cold() could also have been declared as pure. */
-extern arc_pure int
+extern agc_pure int
 foobar_pure(int x, int y);
 
 
@@ -21,7 +21,7 @@ foobar_pure(int x, int y);
 void
 foo_hot(int x)
 {
-    if (arc_likely (x != 0))
+    if (agc_likely (x != 0))
         printf("x = %d\n", x);
 }
 
@@ -30,7 +30,7 @@ foo_hot(int x)
 void
 bar_cold(int y)
 {
-    if (arc_unlikely (y > 1))
+    if (agc_unlikely (y > 1))
         printf("y = %d\n", y);
 }
 
