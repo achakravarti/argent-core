@@ -102,3 +102,14 @@ float_example(void)
     printf ("The value of f64 is %f\n", f64);
 }
 
+
+    /* this function gives an example of how to use the ag_string type; see the
+     * Argent Abstractions Library for more examples */
+static void
+string_example(void)
+{
+    const ag_string *s = "Hello, world!";
+    printf ("%s\n", s);
+}
+
+
