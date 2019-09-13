@@ -1,23 +1,24 @@
+#include <stdio.h>
 #include <argent/core.h>
 
 
-/* This is how you would declare a hot function. */
+    /* this is how you would declare a hot function */
 extern ag_hot void
 foo_hot(int x);
 
 
-/* This is how you would declare a cold function. */
+    /* this is how you would declare a cold function */
 static ag_cold void
 bar_cold(int y);
 
 
-/* This is how you would declare a pure function. Note that foo_hot() and
- * bar_cold() could also have been declared as pure. */
+    /* this is how you would declare a pure function; note that foo_hot() and
+     * bar_cold() could also have been declared as pure */
 extern ag_pure int
 foobar_pure(int x, int y);
 
 
-/* The hot function shows how you would indicate a likely predicate. */
+    /* this hot function shows how you would indicate a likely predicate */
 void
 foo_hot(int x)
 {
@@ -26,7 +27,7 @@ foo_hot(int x)
 }
 
 
-/* The cold function shows how you would indicate an unlikely predicate. */
+    /* this cold function shows how you would indicate an unlikely predicate */
 void
 bar_cold(int y)
 {
@@ -35,8 +36,8 @@ bar_cold(int y)
 }
 
 
-/* foobar_pure() shows how it qualifies for being declared pure by returning the
- * same value for the same arguments without any side effects. */
+    /* foobar_pure() shows how it qualifies for being declared pure by returning
+     * the same value for the same arguments without any side effects */
 int
 foobar_pure(int x, int y)
 {
