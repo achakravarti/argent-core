@@ -851,7 +851,7 @@ do {                           \
  */
 #define agc_try(p)                         \
 do {                                       \
-    if (agc_unlikely (rush__erno__ = (p))) \
+    if (agc_unlikely (agc__erno__ = (p))) \
         goto AGC__CATCH__;                 \
 } while (0)
 
