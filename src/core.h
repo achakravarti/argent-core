@@ -20,7 +20,7 @@
 /**
  * Hints that a function is pure.
  *
- * The @c agc_pure macro is used to decorate the declaration of a pure function.
+ * The @c ag_pure macro is used to decorate the declaration of a pure function.
  * A pure function is one that always returns the same value for the same
  * arguments without any side effects. This hint follows the GCC attribute
  * syntax, and is recommended to be placed in the function declaration just
@@ -31,17 +31,17 @@
  * no effect.
  */
 #if (defined __GNUC__ || defined __clang__)
-#   define agc_pure __attribute__((pure))
+#   define ag_pure __attribute__((pure))
 #else
-#   define agc_pure
-#   warning agc_pure has no effect on non GCC-compatible compilers
+#   define ag_pure
+#   warning ag_pure has no effect on non GCC-compatible compilers
 #endif
 
 
 /**
  * Hints that a function is called frequently.
  *
- * The @c agc_hot macro is used to decorate a function declaration in order to
+ * The @c ag_hot macro is used to decorate a function declaration in order to
  * indicate that it is called frequently. This hint follows the GCC attribute
  * syntax, and is recommended to be placed in the function declaration just
  * before the function return type.
@@ -50,20 +50,20 @@
  * as Clang; on other compilers, this macro degrades with a warning that it has
  * no effect.
  *
- * @see agc_cold
+ * @see ag_cold
  */
 #if (defined __GNUC__ || defined __clang__)
-#   define agc_hot __attribute__((hot))
+#   define ag_hot __attribute__((hot))
 #else
-#   define agc_hot
-#   warning agc_hot has no effect on non GCC-compatible compilers
+#   define ag_hot
+#   warning ag_hot has no effect on non GCC-compatible compilers
 #endif
 
 
 /**
  * Hints that a function is called infrequently.
  *
- * The @c agc_cold macro is used to decorate a function declaration in order to
+ * The @c ag_cold macro is used to decorate a function declaration in order to
  * indicate that is called infrequently. This hint follows the GCC attribute
  * syntax, and is recommended to be placed in the function declaration just
  * before the function return type.
@@ -72,20 +72,20 @@
  * as Clang; on other compilers, this macro degrades with a warning that it has
  * no effect.
  *
- * @see agc_hot
+ * @see ag_hot
  */
 #if (defined __GNUC__ || defined __clang__)
-#   define agc_cold __attribute__((cold))
+#   define ag_cold __attribute__((cold))
 #else
-#   define agc_cold
-#   warning agc_cold has no effect on non GCC-compatible compilers
+#   define ag_cold
+#   warning ag_cold has no effect on non GCC-compatible compilers
 #endif
 
 
 /**
  * Hints that a predicate is likely to be true.
  *
- * The @c agc_likely() macro indicates that a predicate expression @p p is @b
+ * The @c ag_likely() macro indicates that a predicate expression @p p is @b
  * likely to evaluate to @c true. This hint has been modelled after the @c
  * likely() macro used in the Linux kernel source.
  *
@@ -95,20 +95,20 @@
  * as Clang; on other compilers, this macro degrades with a warning that it has
  * no effect.
  *
- * @see agc_unlikely()
+ * @see ag_unlikely()
  */
 #if (defined __GNUC__ || defined __clang__)
-#   define agc_likely(p) (__builtin_expect(!!(p), 1))
+#   define ag_likely(p) (__builtin_expect(!!(p), 1))
 #else
-#   define agc_likely
-#   warning agc_likely has no effect on non GCC-compatible compilers
+#   define ag_likely
+#   warning ag_likely has no effect on non GCC-compatible compilers
 #endif
 
 
 /**
  * Hints that a predicate is likely to be false.
  *
- * The @c agc_unlikely() macro indicates that a predicate expression @p p is @b
+ * The @c ag_unlikely() macro indicates that a predicate expression @p p is @b
  * unlikely to evaluate to @c false. This hint has been modelled after the @c
  * unlikely() macro used in the Linux kernel source.
  *
@@ -118,13 +118,13 @@
  * as Clang; on other compilers, this macro degrades with a warning that it has
  * no effect.
  *
- * @see agc_likely()
+ * @see ag_likely()
  */
 #if (defined __GNUC__ || defined __clang__)
-#   define agc_unlikely(p) (__builtin_expect(!!(p), 0))
+#   define ag_unlikely(p) (__builtin_expect(!!(p), 0))
 #else
-#   define agc_unlikely
-#   warning agc_unlikely has no effect on non GCC-compatible compilers
+#   define ag_unlikely
+#   warning ag_unlikely has no effect on non GCC-compatible compilers
 #endif
 
 
@@ -161,322 +161,322 @@
 /**
  * Boolean value.
  *
- * The @c agc_bool type represents a Boolean value that can hold only either @c
- * AGC_BOOL_FALSE or @c AGC_BOOL_TRUE for false and true values respectively.
+ * The @c ag_bool type represents a Boolean value that can hold only either @c
+ * AG_BOOL_FALSE or @c AG_BOOL_TRUE for false and true values respectively.
  *
- * @see AGC_BOOL_FALSE
- * @see AGC_BOOL_TRUE
+ * @see AG_BOOL_FALSE
+ * @see AG_BOOL_TRUE
  */
-typedef bool agc_bool;
+typedef bool ag_bool;
 
 
 /**
  * Boolean value False.
  *
- * The @c AGC_BOOL_FALSE symbolic constant represents the Boolean value False,
- * and is one of the values that can be held by the @c agc_bool type.
+ * The @c AG_BOOL_FALSE symbolic constant represents the Boolean value False,
+ * and is one of the values that can be held by the @c ag_bool type.
  *
- * @see agc_bool
- * @see AGC_BOOL_TRUE
+ * @see ag_bool
+ * @see AG_BOOL_TRUE
  */
-#define AGC_BOOL_FALSE (false)
+#define AG_BOOL_FALSE (false)
 
 
 /**
  * Boolean value True.
  *
- * The @c AGC_BOOL_TRUE symbolic constant represents the Boolean value True, and
- * is one of the values that can be held by the @c agc_bool type.
+ * The @c AG_BOOL_TRUE symbolic constant represents the Boolean value True, and
+ * is one of the values that can be held by the @c ag_bool type.
  *
- * @see agc_bool
- * @see AGC_BOOL_FALSE
+ * @see ag_bool
+ * @see AG_BOOL_FALSE
  */
-#define AGC_BOOL_TRUE (true)
+#define AG_BOOL_TRUE (true)
 
 
 /**
  * Native word value.
  *
- * The @c agc_word type represents an unsigned integer word native to the host
+ * The @c ag_word type represents an unsigned integer word native to the host
  * processor.
  *
- * @see agc_word_8
- * @see agc_word_16
- * @see agc_word_32
- * @see agc_word_64
+ * @see ag_word_8
+ * @see ag_word_16
+ * @see ag_word_32
+ * @see ag_word_64
  */
-typedef uint_fast64_t agc_word;
+typedef uint_fast64_t ag_word;
 
 
 /**
  * 8-bit word value.
  *
- * The @c agc_word_8 type represents an unsigned integer word that is guaranteed
+ * The @c ag_word_8 type represents an unsigned integer word that is guaranteed
  * to be at least 8 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_word
- * @see agc_word_16
- * @see agc_word_32
- * @see agc_word_64
+ * @see ag_word
+ * @see ag_word_16
+ * @see ag_word_32
+ * @see ag_word_64
  */
-typedef uint8_t agc_word_8;
+typedef uint8_t ag_word_8;
 
 
 /**
  * 16-bit word value.
  *
- * The @c agc_word_16 type represents an unsigned integer word that is
+ * The @c ag_word_16 type represents an unsigned integer word that is
  * guaranteed to be at least 16 bits wide across all machine architectures
  * supported by the Argent Core Library.
  *
- * @see agc_word
- * @see agc_word_8
- * @see agc_word_32
- * @see agc_word_64
+ * @see ag_word
+ * @see ag_word_8
+ * @see ag_word_32
+ * @see ag_word_64
  */
-typedef uint16_t agc_word_16;
+typedef uint16_t ag_word_16;
 
 
 /**
  * 32-bit word value.
  *
- * The @c agc_word_32 type represents an unsigned integer word that is
+ * The @c ag_word_32 type represents an unsigned integer word that is
  * guaranteed to be at least 32 bits wide across all machine architectures
  * supported by the Argent Core Library.
  *
- * @see agc_word
- * @see agc_word_8
- * @see agc_word_16
- * @see agc_word_64
+ * @see ag_word
+ * @see ag_word_8
+ * @see ag_word_16
+ * @see ag_word_64
  */
-typedef uint32_t agc_word_32;
+typedef uint32_t ag_word_32;
 
 
 /**
  * 64-bit word value.
  *
- * The @c agc_word_64 type represents an unsigned integer word that is
+ * The @c ag_word_64 type represents an unsigned integer word that is
  * guaranteed to be at least 64 bits wide across all machine architectures
  * supported by the Argent Core Library.
  *
- * @see agc_word
- * @see agc_word_8
- * @see agc_word_16
- * @see agc_word_32
+ * @see ag_word
+ * @see ag_word_8
+ * @see ag_word_16
+ * @see ag_word_32
  */
-typedef uint64_t agc_word_64;
+typedef uint64_t ag_word_64;
 
 
 /**
  * Size value.
  *
- * The @c agc_size type represents a native unsigned size value. This type
+ * The @c ag_size type represents a native unsigned size value. This type
  * expands to either 32 or 64 bits depending on the machine architecture.
  *
- * @see agc_index
+ * @see ag_index
  */
-typedef size_t agc_size;
+typedef size_t ag_size;
 
 
 /**
  * Index value.
  *
- * The @c agc_index type represents a native unsigned index value. This type
+ * The @c ag_index type represents a native unsigned index value. This type
  * expands to either 32 or 64 bits depending on the machine architecture.
  *
- * @see agc_size
+ * @see ag_size
  */
-typedef size_t agc_index;
+typedef size_t ag_index;
 
 
 /**
  * Native integer value.
  *
- * The @c agc_int type represents a signed integer native to the host processor.
+ * The @c ag_int type represents a signed integer native to the host processor.
  * This type expands to a width of either 32 or 64 bits depending on the machine
  * architecture.
  *
- * @see agc_int_8
- * @see agc_int_16
- * @see agc_int_32
- * @see agc_int_64
+ * @see ag_int_8
+ * @see ag_int_16
+ * @see ag_int_32
+ * @see ag_int_64
  */
-typedef int_fast64_t agc_int;
+typedef int_fast64_t ag_int;
 
 
 /**
  * 8-bit integer.
  *
- * The @c agc_int_8 type represents a signed integer that is guaranteed to be at
+ * The @c ag_int_8 type represents a signed integer that is guaranteed to be at
  * least 8 bits wide across all machine architectures supported by the Argent
  * Core Library.
  *
- * @see agc_int
- * @see agc_int_16
- * @see agc_int_32
- * @see agc_int_64
+ * @see ag_int
+ * @see ag_int_16
+ * @see ag_int_32
+ * @see ag_int_64
  */
-typedef int8_t agc_int_8;
+typedef int8_t ag_int_8;
 
 
 /**
  * 16-bit integer.
  *
- * The @c agc_int_16 type represents a signed integer that is guaranteed to be
+ * The @c ag_int_16 type represents a signed integer that is guaranteed to be
  * least 16 bits wide across all machine architectures supported by the Argent
  * Core Library.
  *
- * @see agc_int
- * @see agc_int_8
- * @see agc_int_32
- * @see agc_int_64
+ * @see ag_int
+ * @see ag_int_8
+ * @see ag_int_32
+ * @see ag_int_64
  */
-typedef int16_t agc_int_16;
+typedef int16_t ag_int_16;
 
 
 /**
  * 32-bit integer.
  *
- * The @c agc_int_32 type represents a signed integer that is guaranteed to be
+ * The @c ag_int_32 type represents a signed integer that is guaranteed to be
  * least 32 bits wide across all machine architectures supported by the Argent
  * Core Library.
  *
- * @see agc_int
- * @see agc_int_8
- * @see agc_int_16
- * @see agc_int_64
+ * @see ag_int
+ * @see ag_int_8
+ * @see ag_int_16
+ * @see ag_int_64
  */
-typedef int32_t agc_int_32;
+typedef int32_t ag_int_32;
 
 
 /**
  * 64-bit integer.
  *
- * The @c agc_int_64 type represents a signed integer that is guaranteed to be
+ * The @c ag_int_64 type represents a signed integer that is guaranteed to be
  * least 64 bits wide across all machine architectures supported by the Argent
  * Core Library.
  *
- * @see agc_int
- * @see agc_int_8
- * @see agc_int_16
- * @see agc_int_32
+ * @see ag_int
+ * @see ag_int_8
+ * @see ag_int_16
+ * @see ag_int_32
  */
-typedef int64_t agc_int_64;
+typedef int64_t ag_int_64;
 
 
 /**
  * Native unsigned integer value.
  *
- * The @c agc_uint type represents an unsigned integer native to the host
+ * The @c ag_uint type represents an unsigned integer native to the host
  * processor. This type expands to a width of either 32 or 64 bits depending on
  * the machine architecture.
  *
- * @see agc_uint_8
- * @see agc_uint_16
- * @see agc_uint_32
- * @see agc_uint_64
+ * @see ag_uint_8
+ * @see ag_uint_16
+ * @see ag_uint_32
+ * @see ag_uint_64
  */
-typedef uint_fast64_t agc_uint;
+typedef uint_fast64_t ag_uint;
 
 
 /**
  * 8-bit unsigned integer.
  *
- * The @c agc_uint_8 type represents an unsigned integer that is guaranteed to
+ * The @c ag_uint_8 type represents an unsigned integer that is guaranteed to
  * be at least 8 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_uint
- * @see agc_uint_16
- * @see agc_uint_32
- * @see agc_uint_64
+ * @see ag_uint
+ * @see ag_uint_16
+ * @see ag_uint_32
+ * @see ag_uint_64
  */
-typedef uint8_t agc_uint_8;
+typedef uint8_t ag_uint_8;
 
 
 /**
  * 16-bit unsigned integer.
  *
- * The @c agc_uint_16 type represents an unsigned integer that is guaranteed to
+ * The @c ag_uint_16 type represents an unsigned integer that is guaranteed to
  * be at least 16 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_uint
- * @see agc_uint_8
- * @see agc_uint_32
- * @see agc_uint_64
+ * @see ag_uint
+ * @see ag_uint_8
+ * @see ag_uint_32
+ * @see ag_uint_64
  */
-typedef uint16_t agc_uint_16;
+typedef uint16_t ag_uint_16;
 
 
 /**
  * 32-bit unsigned integer.
  *
- * The @c agc_uint_32 type represents an unsigned integer that is guaranteed to
+ * The @c ag_uint_32 type represents an unsigned integer that is guaranteed to
  * be at least 32 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_uint
- * @see agc_uint_8
- * @see agc_uint_16
- * @see agc_uint_64
+ * @see ag_uint
+ * @see ag_uint_8
+ * @see ag_uint_16
+ * @see ag_uint_64
  */
-typedef uint32_t agc_uint_32;
+typedef uint32_t ag_uint_32;
 
 
 /**
  * 64-bit unsigned integer.
  *
- * The @c agc_uint_64 type represents an unsigned integer that is guaranteed to
+ * The @c ag_uint_64 type represents an unsigned integer that is guaranteed to
  * be at least 64 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_uint
- * @see agc_uint_8
- * @see agc_uint_16
- * @see agc_uint_32
+ * @see ag_uint
+ * @see ag_uint_8
+ * @see ag_uint_16
+ * @see ag_uint_32
  */
-typedef uint64_t agc_uint_64;
+typedef uint64_t ag_uint_64;
 
 
 /**
  * Native floating point value.
  *
- * The @c agc_float type represents a floating point value that is native to the
+ * The @c ag_float type represents a floating point value that is native to the
  * host processor. This type expands to either 32 or 64 bits depending on the
  * machine architecture.
  *
- * @see agc_float_32
- * @see agc_float_64
+ * @see ag_float_32
+ * @see ag_float_64
  */
-typedef double agc_float;
+typedef double ag_float;
 
 
 /**
  * 32-bit floating point value.
  *
- * The @c agc_float_32 type represents a floating point value that is guaranteed
+ * The @c ag_float_32 type represents a floating point value that is guaranteed
  * to be at least 32 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_float
- * @see agc_float_64
+ * @see ag_float
+ * @see ag_float_64
  */
-typedef float agc_float_32;
+typedef float ag_float_32;
 
 
 /**
  * 64-bit floating point value.
  *
- * The @c agc_float_32 type represents a floating point value that is guaranteed
+ * The @c ag_float_32 type represents a floating point value that is guaranteed
  * to be at least 64 bits wide across all machine architectures supported by the
  * Argent Core Library.
  *
- * @see agc_float
- * @see agc_float_32
+ * @see ag_float
+ * @see ag_float_32
  */
-typedef double agc_float_64;
+typedef double ag_float_64;
 
 
 /**
@@ -506,353 +506,353 @@ typedef double agc_float_64;
 /**
  * Generic error code.
  *
- * The @c agc_erno type is used to hold error codes. Error codes may be defined
+ * The @c ag_erno type is used to hold error codes. Error codes may be defined
  * by client code as unsigned integers, with the exception of the error codes
  * defined below. This type aligns itself to the native word size of the host
  * environment. Any function returning this type can take advantage of the error
  * handling features provided by this module.
  */
-typedef agc_word agc_erno;
+typedef ag_word ag_erno;
 
 
 /**
  * No error.
  *
- * The @c AGC_ERNO_NULL symbolic constant indicates that no error has occurred.
+ * The @c AG_ERNO_NULL symbolic constant indicates that no error has occurred.
  * This error code is reserved by the Argent Core Library, and should @b not be
  * redefined by client code. Functions that take advantage of the error handling
  * mechanism implemented by this module return this symbolic constant (through
- * @c agc_erno_get()) by default if they don't encounter any errors during
+ * @c ag_erno_get()) by default if they don't encounter any errors during
  * execution.
  *
- * @see AGC_TRY
- * @see agc_assert()
- * @see agc_try()
+ * @see AG_TRY
+ * @see ag_assert()
+ * @see ag_try()
  */
-#define AGC_ERNO_NULL ((agc_erno) 0x0)
+#define AG_ERNO_NULL ((ag_erno) 0x0)
 
 
 /**
  * Invalid pointer error.
  *
- * The @c AGC_ERNO_HANDLE symbolic constant indicates that an invalid pointer
+ * The @c AG_ERNO_HANDLE symbolic constant indicates that an invalid pointer
  * has been passed to a function or macro. This error code is reserved by the
  * Argent Core Library, and should @b not be redefined by client code.
  *
- * @see AGC_TRY
- * @see agc_assert_handle()
+ * @see AG_TRY
+ * @see ag_assert_handle()
  */
-#define AGC_ERNO_HANDLE ((agc_erno) 0x1)
+#define AG_ERNO_HANDLE ((ag_erno) 0x1)
 
 
 /**
  * Invalid state error.
  *
- * The @c AGC_ERNO_STATE symbolic constant indicates that an operation has taken
+ * The @c AG_ERNO_STATE symbolic constant indicates that an operation has taken
  * place that has resulted in an invalid state of an entity. This error code is
  * reserved by the Argent Core Library, and should @b not be redefined by client
  * code.
  *
- * @see AGC_TRY
- * @see agc_assert_state()
+ * @see AG_TRY
+ * @see ag_assert_state()
  */
-#define AGC_ERNO_STATE ((agc_erno) 0x2)
+#define AG_ERNO_STATE ((ag_erno) 0x2)
 
 
 /**
  * Out of bounds error.
  *
- * The @c AGC_ERNO_RANGE symbolic constant indicates that a value that is
+ * The @c AG_ERNO_RANGE symbolic constant indicates that a value that is
  * outside its acceptable range has been passed to a function or macro. This
  * error code is reserved by the Argent Core Library, and should @b not be
  * redefined by client code.
  *
- * @see AGC_TRY
- * @see agc_assert_range()
+ * @see AG_TRY
+ * @see ag_assert_range()
  */
-#define AGC_ERNO_RANGE ((agc_erno) 0x3)
+#define AG_ERNO_RANGE ((ag_erno) 0x3)
 
 
 /**
- * The @c AGC_ERNO_STRING symbolic constant indicates that an invalid string has
+ * The @c AG_ERNO_STRING symbolic constant indicates that an invalid string has
  * been passed to a function or macro. An invalid string is considered to be one
  * that is either a null pointer or an empty string. This error code is reserved
  * by the Argent Core Library, and should @b not be redefined by client code.
  *
- * @see AGC_TRY
- * @see agc_assert_string()
+ * @see AG_TRY
+ * @see ag_assert_string()
  */
-#define AGC_ERNO_STRING ((agc_erno) 0x4)
+#define AG_ERNO_STRING ((ag_erno) 0x4)
 
 
 /**
  * Get current error code.
  *
- * The @c agc_erno_get() macro returns the current error code within a function
+ * The @c ag_erno_get() macro returns the current error code within a function
  * that makes use of the error handling mechanism defined by this module. The
- * error code returned is an @c agc_erno value, either one of those defined by
+ * error code returned is an @c ag_erno value, either one of those defined by
  * this module, or one defined by client code.
  *
  * @return The current error code.
  *
- * @see agc_erno_set()
- * @see AGC_TRY
+ * @see ag_erno_set()
+ * @see AG_TRY
  */
-#define agc_erno_get() \
-    ((const agc_erno) agc__erno__)
+#define ag_erno_get() \
+    ((const ag_erno) ag__erno__)
 
 
 /**
  * Set current error code.
  *
- * The @c agc_erno_set() macro sets the current error code within a function
+ * The @c ag_erno_set() macro sets the current error code within a function
  * that makes use of the error handling mechanism defined by this module. The
- * current error code can be set to an @c agc_erno value, either one of those
+ * current error code can be set to an @c ag_erno value, either one of those
  * defined by this module, or one defined by client code.
  *
- * @param e The @c agc_erno error code to set.
+ * @param e The @c ag_erno error code to set.
  *
- * @see agc_erno_get()
- * @see AGC_TRY
+ * @see ag_erno_get()
+ * @see AG_TRY
  */
-#define agc_erno_set(e) \
-    (agc__erno__ = (e))
+#define ag_erno_set(e) \
+    (ag__erno__ = (e))
 
 
 /**
  * Start try block.
  *
- * The @c AGC_TRY label identifies the starting point of the try block within a
- * function that returns an @c agc_erno value. The try block contains the normal
+ * The @c AG_TRY label identifies the starting point of the try block within a
+ * function that returns an @c ag_erno value. The try block contains the normal
  * flow of code that may encounter errors. It must be placed at the beginning of
- * the function body and terminated by a @c AGC_TRY block.
+ * the function body and terminated by a @c AG_TRY block.
  *
  * The code that may encounter errors within this block must be tested through
- * the @c agc_try() and @c agc_assert() family of macros defined below. In case
- * an error occurs, then control is passed to the adjancent @c AGC_CATCH block
+ * the @c ag_try() and @c ag_assert() family of macros defined below. In case
+ * an error occurs, then control is passed to the adjancent @c AG_CATCH block
  * without executing the reamining code in the try block.
  *
- * If no error occurs, then control automatically moves to the @c AGC_FINALLY
- * block placed after the @c AGC_CATCH block; this allows for the necessary
+ * If no error occurs, then control automatically moves to the @c AG_FINALLY
+ * block placed after the @c AG_CATCH block; this allows for the necessary
  * cleanup code to be performed.
  *
- * @warning Be sure to include the @c AGC_CATCH and @c AGC_FINALLY blocks if
- * using @c AGC_TRY.
+ * @warning Be sure to include the @c AG_CATCH and @c AG_FINALLY blocks if
+ * using @c AG_TRY.
  *
- * @see AGC_CATCH
- * @see AGC_FINALLY
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_CATCH
+ * @see AG_FINALLY
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define AGC_TRY                                    \
-    register agc_erno agc__erno__ = AGC_ERNO_NULL; \
-    goto AGC__TRY__;                               \
-    AGC__TRY__
+#define AG_TRY                                  \
+    register ag_erno ag__erno__ = AG_ERNO_NULL; \
+    goto AG__TRY__;                             \
+    AG__TRY__
 
 
 /**
  * Start catch block.
  *
- * The @c AGC_CATCH label identifies the starting point of a catch block within
- * a function that returns an @c agc_erno value. The catch block contains the
+ * The @c AG_CATCH label identifies the starting point of a catch block within
+ * a function that returns an @c ag_erno value. The catch block contains the
  * error handling code, and must be placed immediately at the end of an @c
- * AGC_TRY block.
+ * AG_TRY block.
  *
- * The @c AGC_CATCH block must be terminated by an adjacent AGC_FINALLY block.
+ * The @c AG_CATCH block must be terminated by an adjacent AG_FINALLY block.
  * This allows all necessary cleanup code to be performed after the error
  * handling code has been executed.
  *
- * @warning At no point should the @c agc_try() and @c agc_assert() family of
- * macros be used in the @c AGC_CATCH block, as this would potentially lead to
+ * @warning At no point should the @c ag_try() and @c ag_assert() family of
+ * macros be used in the @c AG_CATCH block, as this would potentially lead to
  * an infinite loop.
  *
- * @see AGC_TRY
- * @see AGC_FINALLY
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_TRY
+ * @see AG_FINALLY
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define AGC_CATCH        \
-    goto AGC__FINALLY__; \
-    AGC__CATCH__
+#define AG_CATCH        \
+    goto AG__FINALLY__; \
+    AG__CATCH__
 
 
 /**
  * Start finally block.
  *
- * The @c AGC_FINALLY label identifies the starting point of a finally block
- * within a function that returns an @c agc_erno value. The finally block
- * contains the cleanup code that is common to both the @c AGC_TRY and @c
- * AGC_CATCH blocks, and must be placed immediately at the end of an @c AGC_TRY
+ * The @c AG_FINALLY label identifies the starting point of a finally block
+ * within a function that returns an @c ag_erno value. The finally block
+ * contains the cleanup code that is common to both the @c AG_TRY and @c
+ * AG_CATCH blocks, and must be placed immediately at the end of an @c AG_TRY
  * block.
  *
- * The @c AGC_FINALLY block must be terminated by returning the current error
- * code provided by the @c agc_erno_get() macro defined above.
+ * The @c AG_FINALLY block must be terminated by returning the current error
+ * code provided by the @c ag_erno_get() macro defined above.
  *
- * @warning At no point should the @c agc_try() and @c agc_assert() family of
- * macros be used in the @c AGC_FINALLY block as this could potentially lead to
+ * @warning At no point should the @c ag_try() and @c ag_assert() family of
+ * macros be used in the @c AG_FINALLY block as this could potentially lead to
  * an infinite loop.
  *
- * @see AGC_TRY
- * @see AGC_CATCH
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_TRY
+ * @see AG_CATCH
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define AGC_FINALLY AGC__FINALLY__
+#define AG_FINALLY AG__FINALLY__
 
 
 /**
  * Verify generic precondition.
  *
- * The @c agc_assert() macro verifies whether a generic precondition, expressed
+ * The @c ag_assert() macro verifies whether a generic precondition, expressed
  * as a predicate @p p, is true before any further processing takes place. If
- * the assertion fails, then an @c agc_erno error code @p e is raised in the
- * current context and control jumps to the adjacent @c AGC_CATCH block.
+ * the assertion fails, then an @c ag_erno error code @p e is raised in the
+ * current context and control jumps to the adjacent @c AG_CATCH block.
  *
  * @param p Precondition predicate being asserted.
  * @param e Error code to be raised if assertion fails.
  *
- * @warning This macro can only be called within an @c AGC_TRY block; it should
- * @b never be called within an @c AGC_CATCH or @c AGC_FINALLY block as it may
+ * @warning This macro can only be called within an @c AG_TRY block; it should
+ * @b never be called within an @c AG_CATCH or @c AG_FINALLY block as it may
  * lead to an infinite loop.
  *
- * @see AGC_TRY
- * @see agc_try()
- * @see agc_assert_handle()
- * @see agc_assert_state()
- * @see agc_assert_range()
- * @see agc_assert_string()
+ * @see AG_TRY
+ * @see ag_try()
+ * @see ag_assert_handle()
+ * @see ag_assert_state()
+ * @see ag_assert_range()
+ * @see ag_assert_string()
  */
-#define agc_assert(p, e)       \
-do {                           \
-    if (agc_unlikely (!(p))) { \
-        agc__erno__ = (e);     \
-        goto AGC__CATCH__;     \
-    }                          \
+#define ag_assert(p, e)       \
+do {                          \
+    if (ag_unlikely (!(p))) { \
+        ag__erno__ = (e);     \
+        goto AG__CATCH__;     \
+    }                         \
 } while (0)
 
 
 /**
  * Verify handle precondition.
  *
- * The @c agc_assert_handle() macro verifies whether a handle to an entity meets
+ * The @c ag_assert_handle() macro verifies whether a handle to an entity meets
  * a specific precondition, expressed as a predicate @p p. If the assertion
- * fails, then @c AGC_ERNO_HANDLE is raised in the current context and control
- * jumps to the adjacent @c AGC_CATCH block.
+ * fails, then @c AG_ERNO_HANDLE is raised in the current context and control
+ * jumps to the adjacent @c AG_CATCH block.
  *
  * @param p Precondition predicate being asserted.
  *
- * @note This macro is a convenience wrapper around @c agc_assert().
+ * @note This macro is a convenience wrapper around @c ag_assert().
  *
- * @warning This macro can only be called within an @c AGC_TRY block; it should
- * @b never be called within an @c AGC_CATCH or @c AGC_FINALLY block as it may
+ * @warning This macro can only be called within an @c AG_TRY block; it should
+ * @b never be called within an @c AG_CATCH or @c AG_FINALLY block as it may
  * lead to an infinite loop.
  *
- * @see AGC_TRY
- * @see AGC_ERNO_HANDLE
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_TRY
+ * @see AG_ERNO_HANDLE
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define agc_assert_handle(p) \
-    agc_assert((p), AGC_ERNO_HANDLE)
+#define ag_assert_handle(p) \
+    ag_assert((p), AG_ERNO_HANDLE)
 
 
 /**
  * Verify state precondition.
  *
- * The @c agc_assert_state() macro verifies whether the state of an entity meets
+ * The @c ag_assert_state() macro verifies whether the state of an entity meets
  * a specific precondition, expressed as a predicate @p p. If the assertion
- * fails, then @c AGC_ERNO_STATE is raised in the current context and control
- * jumps to the adjacent @c AGC_CATCH block.
+ * fails, then @c AG_ERNO_STATE is raised in the current context and control
+ * jumps to the adjacent @c AG_CATCH block.
  *
  * @param p Precondition predicate being asserted.
  *
- * @note This macro is a convenience wrapper around @c agc_assert().
+ * @note This macro is a convenience wrapper around @c ag_assert().
  *
- * @warning This macro can only be called within an @c AGC_TRY block; it should
- * @b never be called within an @c AGC_CATCH or @c AGC_FINALLY block as it may
+ * @warning This macro can only be called within an @c AG_TRY block; it should
+ * @b never be called within an @c AG_CATCH or @c AG_FINALLY block as it may
  * lead to an infinite loop.
  *
- * @see AGC_TRY
- * @see AGC_ERNO_STATE
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_TRY
+ * @see AG_ERNO_STATE
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define agc_assert_state(p) \
-    agc_assert((p), AGC_ERNO_STATE)
+#define ag_assert_state(p) \
+    ag_assert((p), AG_ERNO_STATE)
 
 
 /**
  * Verify range precondition.
  *
- * The @c agc_assert_range() macro verifies whether an entity lies within a
+ * The @c ag_assert_range() macro verifies whether an entity lies within a
  * specific range, expressed as a predicate @p p. If the assertion fails, then
- * @c AGC_ERNO_RANGE is raised in the current context and control jumps to the
- * adjacent @c AGC_CATCH block.
+ * @c AG_ERNO_RANGE is raised in the current context and control jumps to the
+ * adjacent @c AG_CATCH block.
  *
  * @param p Precondition predicate being asserted.
  *
- * @note This macro is a convenience wrapper around @c agc_assert().
+ * @note This macro is a convenience wrapper around @c ag_assert().
  *
- * @warning This macro can only be called within an @c AGC_TRY block; it should
- * @b never be called within an @c AGC_CATCH or @c AGC_FINALLY block as it may
+ * @warning This macro can only be called within an @c AG_TRY block; it should
+ * @b never be called within an @c AG_CATCH or @c AG_FINALLY block as it may
  * lead to an infinite loop.
  *
- * @see AGC_TRY
- * @see AGC_ERNO_RANGE
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_TRY
+ * @see AG_ERNO_RANGE
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define agc_assert_range(p) \
-    agc_assert((p), AGC_ERNO_RANGE)
+#define ag_assert_range(p) \
+    ag_assert((p), AG_ERNO_RANGE)
 
 
 /**
  * Verify string precondition.
  *
- * The @c agc_assert_string() macro verifies whether a string @p s is valid. A
+ * The @c ag_assert_string() macro verifies whether a string @p s is valid. A
  * string is considered to be valid if it is not a null pointer and it is not
- * empty. If the assertion fails, then @c AGC_ERNO_STRING is raised in the
- * current context and control jumps to the adjacent @c AGC_CATCH block.
+ * empty. If the assertion fails, then @c AG_ERNO_STRING is raised in the
+ * current context and control jumps to the adjacent @c AG_CATCH block.
  *
  * @param p Precondition predicate being asserted.
  *
- * @note This macro is a convenience wrapper around @c agc_assert().
+ * @note This macro is a convenience wrapper around @c ag_assert().
  *
- * @warning This macro can only be called within an @c AGC_TRY block; it should
- * @b never be called within an @c AGC_CATCH or @c AGC_FINALLY block as it may
+ * @warning This macro can only be called within an @c AG_TRY block; it should
+ * @b never be called within an @c AG_CATCH or @c AG_FINALLY block as it may
  * lead to an infinite loop.
  *
- * @see AGC_TRY
- * @see AGC_ERNO_STRING
- * @see agc_try()
- * @see agc_assert()
+ * @see AG_TRY
+ * @see AG_ERNO_STRING
+ * @see ag_try()
+ * @see ag_assert()
  */
-#define agc_assert_string(s) \
-    agc_assert((s) && *(s), AGC_ERNO_STRING)
+#define ag_assert_string(s) \
+    ag_assert((s) && *(s), AG_ERNO_STRING)
 
 
 /**
  * Validate postcondition.
  *
- * The @c agc_try() macro validates whether a postcondition @p, expressed as a
- * function returning an @c agc_erno value, has not failed. The function is
+ * The @c ag_try() macro validates whether a postcondition @p, expressed as a
+ * function returning an @c ag_erno value, has not failed. The function is
  * deemed to have run successfully if it has not raised any error as flagged by
  * the returned error code. If the validation fails, then control will jump to
- * the adjacent @c AGC_CATCH block.
+ * the adjacent @c AG_CATCH block.
  *
  * @param p Postcondition being evaluated.
  *
- * @warning This macro can only be called within an @c AGC_TRY block; it should
- * @b never be called within an @c AGC_CATCH or @c AGC_FINALLY block as it may
+ * @warning This macro can only be called within an @c AG_TRY block; it should
+ * @b never be called within an @c AG_CATCH or @c AG_FINALLY block as it may
  * lead to an infinite loop.
  *
- * @see AGC_TRY
- * @see agc_assert()
+ * @see AG_TRY
+ * @see ag_assert()
  */
-#define agc_try(p)                         \
-do {                                       \
-    if (agc_unlikely (agc__erno__ = (p))) \
-        goto AGC__CATCH__;                 \
+#define ag_try(p)                       \
+do {                                    \
+    if (ag_unlikely (ag__erno__ = (p))) \
+        goto AG__CATCH__ ;              \
 } while (0)
 
 
