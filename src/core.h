@@ -480,6 +480,18 @@ typedef double ag_float_64;
 
 
 /**
+ * UTF-8 string.
+ *
+ * The ag_string type represents a UTF-8 string. An ag_string may be used
+ * interchangably with a raw @c char string in most (but not all) cases. Argent
+ * string instances may be allocated either on the stack or on the heap. The
+ * Argent Abstractions Library provides an interface for working with Argent
+ * strings.
+ */
+typedef char ag_string;
+
+
+/**
  * @example type.h
  * This is an example showing how to code against the Argent Core Type Module
  * interface.
