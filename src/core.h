@@ -3,6 +3,84 @@
 
 
 /**************************************************************************//**
+ * @defgroup compiler Argent Core Compiler Module
+ * Compiler identification.
+ *
+ * The Compiler Module provides an interface to reliably determine the compiler
+ * being used at compilation time. This is useful when conditionally compiling
+ * code that depends on specific features provided by a compiler.
+ *
+ * Currently, only the GNU C and Clang compilers are supported directly, and GNU
+ * C compatible compilers indirectly. This is expected to be adequate as far as
+ * portability is concerned, as GNU C is the most widely ported compiler.
+ *
+ * However, in future, support for other compilers, including MSVC, @b may be
+ * introduced if there is adequate reason to do so.
+ * @{
+ */
+
+
+/**
+ * GNU C compiler.
+ *
+ * The @c AG_COMPILER_GNUC symbolic constant represents the GNU C compiler. This
+ * constant is returned by the @c ag_compiler() macro (defined below) if it
+ * detects that the GNU C compiler is being used.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_compiler()
+ */
+#define AG_COMPILER_GNUC (0)
+
+
+/**
+ * LLVM Clang front-end.
+ *
+ * The @c AG_COMPILER_CLANG symbolic constant represents the Clang front-end of
+ * the LLVM compiler. This constant is returned by the @c ag_compiler() macro
+ * (defined below) if it detects that the Clang compiler is being used.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_compiler()
+ */
+#define AG_COMPILER_CLANG (1)
+
+
+/**
+ * Determine compiler used.
+ *
+ * The @c ag_compiler() macro determines at compile-time the C compiler that is
+ * being used. This macro returns one of the @c AG_COMPILER_* family of symbolic
+ * constants as appropriate.
+ *
+ * @return AG_COMPILER_GNUC if GNU C (or compatible) compiler is being used.
+ * @return AG_COMPILER_CLANG if Clang compiler is being used.
+ *
+ * @note In case a compiler other than those supported by the Argent Core
+ * Library is used, then the @c ag_compiler() macro raises a compilation error.
+ */
+#if (defined __GNUC__)
+#       define ag_compiler() AG_COMPILER_GNUC
+#elif (defined __clang__)
+#       define ag_compiler() AG_COMPILER_CLANG
+#else
+#       error ag_compiler(): unsupported C compiler
+#endif
+
+
+/**
+ * @example compiler.h
+ * This is an example showing how to code against the Argent Core Compiler
+ * Module interface.
+ * @}
+ */
+
+
+/**************************************************************************//**
  * @defgroup hint Argent Core Hint Module
  * Compiler hints for optimisation.
  *
