@@ -2,6 +2,18 @@
 #define ARGENT_CORE
 
 
+#define AG_COMPILER_GNUC (0)
+#define AG_COMPILER_CLANG (1)
+
+#if (defined __GNUC__)
+#       define ag_compiler() AG_COMPILER_GNUC
+#elif (defined __clang__)
+#       define ag_compiler() AG_COMPILER_CLANG
+#else
+#       error ag_compiler(): unsupported C compiler
+#endif
+
+
 /**************************************************************************//**
  * @defgroup hint Argent Core Hint Module
  * Compiler hints for optimisation.
