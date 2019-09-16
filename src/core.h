@@ -27,6 +27,9 @@
  * constant is returned by the @c ag_compiler() macro (defined below) if it
  * detects that the GNU C compiler is being used.
  *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
  * @see ag_compiler()
  */
 #define AG_COMPILER_GNUC (0)
@@ -38,6 +41,9 @@
  * The @c AG_COMPILER_CLANG symbolic constant represents the Clang front-end of
  * the LLVM compiler. This constant is returned by the @c ag_compiler() macro
  * (defined below) if it detects that the Clang compiler is being used.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
  *
  * @see ag_compiler()
  */
