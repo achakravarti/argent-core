@@ -224,6 +224,30 @@
 #define AG_HOST_SOLARIS (9)
 
 
+/**
+ * Determine compile-time host platform.
+ *
+ * The @c ag_host() macro determines at compile time the host platform that is
+ * being used. This macro returns one of the @c AG_HOST_* symbolic constants
+ * (defined above) as appropriate. 
+ *
+ * @return AG_HOST_NONE if a freestanding environment is detected.
+ * @return AG_HOST_ANDROID if an Android host is detected.
+ * @return AG_HOST_LINUX if a Linux host is detected.
+ * @return AG_HOST_CYGWIN if a Cygwin host is detected.
+ * @return AG_HOST_BSD if a BSD host is detected.
+ * @return AG_HOST_HPUX if an HP-UX host is detected.
+ * @return AG_HOST_AIX if an IBM AIX host is detected.
+ * @return AG_HOST_IOS if an Apple iOS host is detected.
+ * @return AG_HOST_OSX if an Apple OSX host is detected.
+ * @return AG_HOST_SOLARIS if a Solaris host is detected.
+ *
+ * @note A compile-time error is raised in case an unknown host is detected.
+ *
+ * @warning Even though the Argent Core Library can detect several different
+ * host environments through the @c ag_host() macro, as of date the Library has
+ * been tested only on Linux.
+ */
 #if (defined __CYGWIN__)
 #   define ag_host() (AG_HOST_CYGWIN)
 #elif (defined __ANDROID__)
