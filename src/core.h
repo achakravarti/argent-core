@@ -95,6 +95,40 @@
  */
 
 
+
+#if (defined __CYGWIN__)
+#   define ag_host() (AG_HOST_CYGWIN)
+#elif (defined __ANDROID__)
+#   define ag_host() (AG_HOST_ANDROID)
+#elif (defined __linux__)
+#   define ag_host() (AG_HOST_LINUX)
+#elif (defined __hpux)
+#   define ag_host() (AG_HOST_HPUX)
+#elif (defined _AIX)
+#   define ag_host() (AG_HOST_AIX)
+#elif (defined __sun && defined __SVR4)
+#   define ag_host() (AG_HOST_SOLARIS)
+#elif (defined __unix__)
+#   include <sys/param.h>
+#   if (defined BSD)
+#       define ag_host() (AG_HOST_BSD)
+#   endif
+#elif (defined __APPLE__ && defined __MACH__)
+#   include <TargetConditionals.h>
+#   if (TARGET_IPHONE_SIMULATOR == 1 || TARGET_OS_IPHONE == 1)
+#       define ag_host() (AG_HOST_IOS)
+#   elif (TARGET_OS_MAC == 1)
+#       define ag_host() (AG_HOST_OSX)
+#   endif
+#elif (defined __STDC_HOSTED__)
+#   if (__STDC_HOSTED__ == 0)
+#       define ag_host() (AG_HOST_NONE)
+#   endif
+#else
+#   error ag_host(): unsupported host platform
+#endif
+
+
 /**
  * Hints that a function is pure.
  *
