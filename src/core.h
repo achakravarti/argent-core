@@ -64,11 +64,11 @@
  * Library is used, then the @c ag_compiler() macro raises a compilation error.
  */
 #if (defined __GNUC__)
-#       define ag_compiler() AG_COMPILER_GNUC
+#   define ag_compiler() AG_COMPILER_GNUC
 #elif (defined __clang__)
-#       define ag_compiler() AG_COMPILER_CLANG
+#   define ag_compiler() AG_COMPILER_CLANG
 #else
-#       error ag_compiler(): unsupported C compiler
+#   error ag_compiler(): unsupported C compiler
 #endif
 
 
@@ -80,20 +80,16 @@
  */
 
 
-/**************************************************************************//**
- * @defgroup hint Argent Core Hint Module
- * Compiler hints for optimisation.
- *
- * Compilers such as GCC have always focused aggressively on optimisation. Many
- * such optimisations have been introduced as compiler-specific extensions that
- * are @b not part of the C standards.
- *
- * The Hint Module abstracts such optimisations as conditional macros so that
- * they they can be taken advantage of in GCC and GCC-compatible compilers such
- * as Clang, but at the same time degrade safely on other compilers.
- * @{
- */
-
+#define AG_HOST_NONE (0)
+#define AG_HOST_ANDROID (1)
+#define AG_HOST_LINUX (2)
+#define AG_HOST_CYGWIN (3)
+#define AG_HOST_BSD (4)
+#define AG_HOST_HPUX (5)
+#define AG_HOST_AIX (6)
+#define AG_HOST_IOS (7)
+#define AG_HOST_OSX (8)
+#define AG_HOST_SOLARIS (9)
 
 
 #if (defined __CYGWIN__)
@@ -127,6 +123,21 @@
 #else
 #   error ag_host(): unsupported host platform
 #endif
+
+
+/**************************************************************************//**
+ * @defgroup hint Argent Core Hint Module
+ * Compiler hints for optimisation.
+ *
+ * Compilers such as GCC have always focused aggressively on optimisation. Many
+ * such optimisations have been introduced as compiler-specific extensions that
+ * are @b not part of the C standards.
+ *
+ * The Hint Module abstracts such optimisations as conditional macros so that
+ * they they can be taken advantage of in GCC and GCC-compatible compilers such
+ * as Clang, but at the same time degrade safely on other compilers.
+ * @{
+ */
 
 
 /**
