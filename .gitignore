@@ -54,3 +54,7 @@ dkms.conf
 # Argent Core Output Directories
 doc/
 
+# Editor cruft
+*.swp
+*~
+
