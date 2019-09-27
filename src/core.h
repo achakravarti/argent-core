@@ -80,15 +80,147 @@
  */
 
 
+/**
+ * Freestanding host environment.
+ *
+ * The @c AG_HOST_NONE symbolic constant represents a freestanding environment.
+ * This constant is returned by the @c ag_host() macro (defined below) if it
+ * detects that that the Argent Core Library is being compiled on a freestanding
+ * environment.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_NONE (0)
+
+/**
+ * Android OS host environment.
+ *
+ * The @c AG_HOST_ANDROID symbolic constant represents the Android OS. This
+ * constant is returned by the @c ag_host() macro (defined below) if it detects
+ * that the Argent Core Library is being compiled on the Android platform.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_ANDROID (1)
+
+/**
+ * All Linux host environments.
+ *
+ * The @c AG_HOST_LINUX symbolic constant represents all host environments using
+ * the Linux kernel. This constant is returned by the @c ag_host() macro
+ * (defined below) if it detects that the Argent Core Library is being compiled
+ * on a Linux environment.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_LINUX (2)
+
+/**
+ * Cygwin on Microsoft Windows.
+ *
+ * The @c AG_HOST_CYGWIN symbolic constant represents the Cygwin environment
+ * hosted on Microsoft Windows. This constant is returned by the @c ag_host()
+ * macro (defined below) if it detects that the Argent Core Library is being
+ * compiled on a Cygwin environment.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_CYGWIN (3)
+
+/**
+ * All BSD host environments.
+ *
+ * The @c AG_HOST_BSD symbolic constant represents all BSD host environments.
+ * This constant is returned by the @c ag_host() macro (defined below) if it
+ * detects that the Argent Core Library is being compiled on a BSD environment.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_BSD (4)
+
+/**
+ * HP-UX host environment.
+ *
+ * The @c AG_HOST_HPUX symbolic constant represents the HP-UX OS. This constant
+ * is returned by the @c ag_host() macro (defined below) if it detects that the
+ * Argent Core Library is being compiled on an HP-UX host.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_HPUX (5)
+
+/**
+ * IBM AIX host environment.
+ *
+ * The @c AG_HOST_AIX symbolic constant represents the IBM AIX OS. This constant
+ * is returned by the @c ag_host() macro (defined below) if it detects that the
+ * Argent Core Library is being compiled on an IBM AIX host.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_AIX (6)
+
+/**
+ * Apple iOS host environment.
+ *
+ * The @c AG_HOST_IOS symbolic constant represents the Apple iOS platform. This
+ * constant is returned by the @c ag_host() macro (defined below) if it detects
+ * that the Argent Core Library is being compiled on an Apple iOS host.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_IOS (7)
+
+/**
+ * Apple OSX host environment.
+ *
+ * The @c AG_HOST_IOS symbolic constant represents the Apple OSX platform. This
+ * constant is returned by the @c ag_host() macro (defined below) if it detects
+ * that the Argent Core Library is being compiled on an Apple OSX host.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_OSX (8)
+
+/**
+ * Oracle Solaris / Open Indiana host environment.
+ *
+ * The @c AG_HOST_SOLARIS represents a Solaris (Oracle or Open Indiana) host.
+ * This constant is returned by the @c ag_host() macro (defined below) if it
+ * detects that the Argent Core Library is being compiled on a Solaris host.
+ *
+ * @note This constant has been defined as a symbolic constant instead of an
+ * enumeration so that it may be used at file scope outside any function body.
+ *
+ * @see ag_host()
+ */
 #define AG_HOST_SOLARIS (9)
 
 
